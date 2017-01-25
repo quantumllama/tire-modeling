@@ -61,7 +61,7 @@ function FY = Pacejka_fulleqn(coeffs,ay,FZ,P,IA)
     
     Cy = pCy1;
     
-    Kya = pKy1*Fzo*(1 + ppy1*dpi)*(1 - pKy3*abs(IA))*sin(pKy4*atan((FZ/Fzo)/((pKy2 + pKy5*(IA^2))*(1 + ppy2*dpi))));
+    Kya = pKy1*Fzo*(1 + ppy1*dpi)*(1 - pKy3*abs(IA))*sin(pKy4*atan((FZ/Fzo)/((pKy2 + pKy5*IA^2)*(1 + ppy2*dpi))));
     By = Kya/(Cy+Dy + ey);
     
 %     Ey = (pEy1 + pEy2*dfz)*(1 + pEy5*IA^2 - sign(ay)*(pEy3 + pEy4*IA));

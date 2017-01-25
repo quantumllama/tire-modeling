@@ -98,7 +98,7 @@ function fitPacejka()
         x0(21) = (simpleFit(6)+1)/2/2;
         x0(22) = (simpleFit(6)+1)/2/2/dfz;
         
-        x0 = real(x0);
+%         x0 = real(x0);
         
         % fit data to the complex model without the full Kya eqn
         lsqfcn = @(x)fullPacejkaDiff(x,SA,FY,avgFZ,avgP,avgIA);
@@ -155,8 +155,16 @@ function fitPacejka()
         %% fit
         x0 = ones(29,1);
         x0(1:6) = Pfit.vals.all(1:6);
-        x0(
+        x0(7) = (Pfit.vals.all(7)/Fzo)^(1/3);
+        x0(8) = (((Pfit.vals.all(7)/Fzo)^(1/3)-1)/dpi);
+        x0(9) = (((Pfit.vals.all(7)/Fzo)^(1/3)+1)/abs(avgIA));
+        x0(10) = asin(Pfit.vals.all(7)/(Fzo*x0(7)*(1+x0(8)*dpi)*(1-x0(9)*abs(avgIA))))/atan(avgFZ/Fzo);
+        x0(11) = asin(Pfit.vals.all(7)/(Fzo*x0(7)*(1+x0(8)*dpi)*(1-x0(9)*abs(avgIA))))/atan(avgFZ/Fzo);
+        x0(12) = asin(Pfit.vals.all(7)/(Fzo*x0(7)*(1+x0(8)*dpi)*(1-x0(9)*abs(avgIA))))/atan(avgFZ/Fzo);
+        x0(13) = asin(Pfit.vals.all(7)/(Fzo*x0(7)*(1+x0(8)*dpi)*(1-x0(9)*abs(avgIA))))/atan(avgFZ/Fzo);
         x0(14:29) = Pfit.vals.all(8:23);
+        
+%         x0 = real(x0);
         
         lsqfcn = @(x)fullPacejkaDiff2(x,SA,FY,avgFZ,avgP,avgIA);
         options = optimoptions(@lsqnonlin,'MaxFunctionEvaluations',6000);
